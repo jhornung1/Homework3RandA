@@ -71,3 +71,25 @@ total_impressions <- sum(treatment$num_impressions) + sum(control$num_impression
 # Step 2: Multiply by .009 and ouput to console
 total_cost = total_impressions * .009
 cat("Total cost of test campaign: ", total_cost)
+
+
+# 5. ROI on ad campaign
+# Step1: Subtract the revenue from ads from the cost of the ads
+negative_cost_of_ads = incremental_revenue - total_cost
+cat(negative_cost_of_ads)
+
+# Step 2: Divide result by cost
+ROI = negative_cost_of_ads / total_cost
+cat(round(ROI,4))
+
+
+# 6. Cost of the control group
+# Step 1: Determine the number of members in control group
+n_control = nrow(control)
+
+# Step 2: Use rate_treat to estimate how many purchases we would get if control was shown ad
+extra_purchases_control = n_control * rate_treat
+
+# Step 3: Calculate additional revenue and output
+extra_revenue = extra_purchases_control * 40
+cat(extra_revenue)
